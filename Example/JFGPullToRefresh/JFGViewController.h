@@ -8,6 +8,8 @@
 
 @import UIKit;
 
-@interface JFGViewController : UIViewController
+#import "UIScrollView+JFGPullToRefreshViewExtension.h"
+
+@interface JFGViewController : UITableViewController
 
 @end
