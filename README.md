@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/cocoapods/l/JFGPullToRefresh.svg?style=flat)](http://cocoapods.org/pods/JFGPullToRefresh)
 [![Platform](https://img.shields.io/cocoapods/p/JFGPullToRefresh.svg?style=flat)](http://cocoapods.org/pods/JFGPullToRefresh)
 
+## Screenshot
+
+![Alt Text](https://raw.githubusercontent.com/fatalaa/JFGPullToRefresh/master/Example/Gif/demo.gif)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
