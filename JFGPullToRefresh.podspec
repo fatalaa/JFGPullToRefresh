@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.screenshots      = "https://raw.githubusercontent.com/fatalaa/JFGPullToRefresh/master/Example/Gif/demo.gif"
   s.license          = 'MIT'
   s.author           = { "Tibor Molnár" => "fatalaa@hotmail.com" }
-  s.source           = { :git => "https://github.com/fatalaa/JFGPullToRefresh.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/fatalaa/JFGPullToRefresh.git", :tag => "v0.1.0" }
   s.social_media_url = 'https://twitter.com/fatalaa'
 
   s.platform     = :ios, '7.1'
