@@ -1,6 +1,0 @@
-framework module JFGPullToRefresh {
-  umbrella header "Pods-JFGPullToRefresh_Example-JFGPullToRefresh-umbrella.h"
-
-  export *
-  module * { export * }
-}

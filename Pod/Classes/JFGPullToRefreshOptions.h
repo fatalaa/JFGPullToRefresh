@@ -15,15 +15,6 @@
     [obj isKindOfClass:[aClass class]] ? obj : nil;      \
 })
 
-#define InsertObjectOfClassForKey(dict, obj, key) \
-({\
-    do {\
-        dict[key] = obj;\
-    }while(0)\
-)}
-
-#define IS_OBJECT(T) _Generic( (T), id: YES, default: NO)
-
 @interface JFGPullToRefreshOptions : NSObject
 
 @property (nonatomic, readonly) BOOL alpha;

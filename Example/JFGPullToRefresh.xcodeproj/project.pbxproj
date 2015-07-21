@@ -20,9 +20,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		79715E2DC4ED3755A09743AB /* libPods-JFGPullToRefresh_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB01B66D4A91F76D8B8C433 /* libPods-JFGPullToRefresh_Tests.a */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		8C465C38DD89E453D2427DE9 /* Pods_JFGPullToRefresh_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4D542DEB48B8810556EDB9 /* Pods_JFGPullToRefresh_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EFCB8FDC48158FC863E5799E /* Pods_JFGPullToRefresh_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBED931047F9DDE331D4225 /* Pods_JFGPullToRefresh_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BE0E109318BC479B8AB6BA9C /* libPods-JFGPullToRefresh_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E06629BA27AFFA6DFD82E35 /* libPods-JFGPullToRefresh_Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +58,11 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		68A0E602A7BA48723196A7C2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		7737BAD2957C69D47E3A142B /* Pods-JFGPullToRefresh_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JFGPullToRefresh_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JFGPullToRefresh_Example/Pods-JFGPullToRefresh_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		7E06629BA27AFFA6DFD82E35 /* libPods-JFGPullToRefresh_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JFGPullToRefresh_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B136953FB5591D03820A93A3 /* Pods-JFGPullToRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JFGPullToRefresh_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JFGPullToRefresh_Tests/Pods-JFGPullToRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		BA4D542DEB48B8810556EDB9 /* Pods_JFGPullToRefresh_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JFGPullToRefresh_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0FC16362A7E7A4FECC1753D /* Pods-JFGPullToRefresh_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JFGPullToRefresh_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JFGPullToRefresh_Tests/Pods-JFGPullToRefresh_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		EEBED931047F9DDE331D4225 /* Pods_JFGPullToRefresh_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JFGPullToRefresh_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEB01B66D4A91F76D8B8C433 /* libPods-JFGPullToRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JFGPullToRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A2043089ABF0FB1C3D9E8B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F76681177BD238B7421BFBBC /* Pods-JFGPullToRefresh_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JFGPullToRefresh_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JFGPullToRefresh_Example/Pods-JFGPullToRefresh_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +75,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				8C465C38DD89E453D2427DE9 /* Pods_JFGPullToRefresh_Example.framework in Frameworks */,
+				BE0E109318BC479B8AB6BA9C /* libPods-JFGPullToRefresh_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				EFCB8FDC48158FC863E5799E /* Pods_JFGPullToRefresh_Tests.framework in Frameworks */,
+				79715E2DC4ED3755A09743AB /* libPods-JFGPullToRefresh_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +121,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				BA4D542DEB48B8810556EDB9 /* Pods_JFGPullToRefresh_Example.framework */,
-				EEBED931047F9DDE331D4225 /* Pods_JFGPullToRefresh_Tests.framework */,
+				7E06629BA27AFFA6DFD82E35 /* libPods-JFGPullToRefresh_Example.a */,
+				DEB01B66D4A91F76D8B8C433 /* libPods-JFGPullToRefresh_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,7 +204,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				73436ED2104718C34DF966A7 /* Embed Pods Frameworks */,
 				AFC34A9016D20540F2F29A1C /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -224,7 +223,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				21FCA0A6B730B38E6DC899F5 /* Embed Pods Frameworks */,
 				142C23A3D6BC483EB06EFF5F /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -306,36 +304,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JFGPullToRefresh_Tests/Pods-JFGPullToRefresh_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		21FCA0A6B730B38E6DC899F5 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JFGPullToRefresh_Tests/Pods-JFGPullToRefresh_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73436ED2104718C34DF966A7 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JFGPullToRefresh_Example/Pods-JFGPullToRefresh_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9F744D0185FA998096BA310F /* Check Pods Manifest.lock */ = {
@@ -514,6 +482,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JFGPullToRefresh/JFGPullToRefresh-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Expecta\"",
+					"\"${PODS_ROOT}/Headers/Public/Expecta+Snapshots\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSnapshotTestCase\"",
+					"\"${PODS_ROOT}/Headers/Public/JFGPullToRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/Specta\"",
+				);
 				INFOPLIST_FILE = "JFGPullToRefresh/JFGPullToRefresh-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

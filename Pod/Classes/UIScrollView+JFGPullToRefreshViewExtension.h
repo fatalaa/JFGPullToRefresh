@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class JFGPullToRefreshOptions;
+@protocol JFGPullToRefreshViewDelegate;
+
 @interface UIScrollView (JFGPullToRefreshViewExtension)
 
+@property (nonatomic, strong) JFGPullToRefreshView *pullToRefreshView;
+
 - (void)addPullToRefreshWithOptions:(JFGPullToRefreshOptions *)pullToRefreshOptions withDelegate:(id<JFGPullToRefreshViewDelegate>)delegate;
+- (void)fixedPullToRefreshViewDidScroll;
 
 @end

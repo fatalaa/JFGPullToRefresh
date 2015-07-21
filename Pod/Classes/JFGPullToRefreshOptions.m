@@ -21,7 +21,10 @@
     if (!options) {
         options = [JFGPullToRefreshOptions defaultOptions];
     }
-    NSMutableDictionary *mutableOptions = self.options.mutableCopy;
+    NSMutableDictionary *mutableOptions = [self.options mutableCopy];
+    if (mutableOptions == nil) {
+        mutableOptions = [NSMutableDictionary dictionary];
+    }
     [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         mutableOptions[key] = obj;
     }];

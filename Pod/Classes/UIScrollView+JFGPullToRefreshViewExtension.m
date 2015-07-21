@@ -10,27 +10,33 @@
 #import "JFGPullToRefreshOptions.h"
 #import "UIScrollView+JFGPullToRefreshViewExtension.h"
 
-@interface UIScrollView ()
+#import <objc/runtime.h>
 
-@property (nonatomic, strong) JFGPullToRefreshView *pullToRefreshView;
-
-@end
+static const NSString *JFGPullToRefreshViewKey = @"JFGPullToRefreshViewKey";
 
 @implementation UIScrollView (JFGPullToRefreshViewExtension)
 
 - (JFGPullToRefreshView *)pullToRefreshView
 {
-    UIView *pullToRefreshView = [self viewWithTag:[JFGPullToRefreshOptions tag]];
+    UIView *pullToRefreshView = objc_getAssociatedObject(self, &JFGPullToRefreshViewKey);
+    if (!pullToRefreshView) {
+        pullToRefreshView = [self viewWithTag:[JFGPullToRefreshOptions tag]];
+        objc_setAssociatedObject(self, &JFGPullToRefreshViewKey, pullToRefreshView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
     return (JFGPullToRefreshView *)pullToRefreshView;
 }
+
+- (void)setPullToRefreshView:(JFGPullToRefreshView *)pullToRefreshView
+{
+    objc_setAssociatedObject(self, &JFGPullToRefreshViewKey, pullToRefreshView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 - (void)addPullToRefreshWithOptions:(JFGPullToRefreshOptions *)pullToRefreshOptions withDelegate:(id<JFGPullToRefreshViewDelegate>)delegate
 {
     CGRect refreshViewFrame = CGRectMake(0, -pullToRefreshOptions.height, self.frame.size.width, pullToRefreshOptions.height);
-    JFGPullToRefreshView *pullToRefreshView = [[JFGPullToRefreshView alloc] initWithFrame:refreshViewFrame withOptions:pullToRefreshOptions withDelegate:delegate];
-    pullToRefreshView.tag = [JFGPullToRefreshOptions tag];
-    self.pullToRefreshView = pullToRefreshView;
-    [self addSubview:pullToRefreshView];
+    self.pullToRefreshView = [[JFGPullToRefreshView alloc] initWithFrame:refreshViewFrame withOptions:pullToRefreshOptions withDelegate:delegate];
+    [self addSubview: self.pullToRefreshView];
 }
 
 - (void)startPullToRefresh

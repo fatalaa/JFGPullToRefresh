@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5093B19366BBEEA83D810097"
+               BlueprintIdentifier = "AC4D4AD94CC01F5656EA788D"
                BuildableName = "JFGPullToRefresh.bundle"
                BlueprintName = "Pods-JFGPullToRefresh_Example-JFGPullToRefresh-JFGPullToRefresh"
                ReferencedContainer = "container:Pods.xcodeproj">

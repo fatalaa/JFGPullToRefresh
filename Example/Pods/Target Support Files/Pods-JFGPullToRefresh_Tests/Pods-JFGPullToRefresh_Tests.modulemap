@@ -1,6 +1,0 @@
-framework module Pods_JFGPullToRefresh_Tests {
-  umbrella header "Pods-JFGPullToRefresh_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

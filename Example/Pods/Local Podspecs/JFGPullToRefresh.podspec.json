@@ -1,17 +1,18 @@
 {
   "name": "JFGPullToRefresh",
   "version": "0.1.0",
-  "summary": "A short description of JFGPullToRefresh.",
+  "summary": "A simple arrow pull to refresh library",
   "description": "                       An optional longer description of JFGPullToRefresh\n\n                       * Markdown format.\n                       * Don't worry about the indent, we strip it!\n",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/JFGPullToRefresh",
+  "homepage": "https://github.com/fatalaa/JFGPullToRefresh",
   "license": "MIT",
   "authors": {
     "Tibor Molnár": "fatalaa@hotmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/JFGPullToRefresh.git",
+    "git": "https://github.com/fatalaa/JFGPullToRefresh.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/fatalaa",
   "platforms": {
     "ios": "7.0"
   },
@@ -21,5 +22,7 @@
     "JFGPullToRefresh": [
       "Pod/Assets/*.png"
     ]
-  }
+  },
+  "public_header_files": "Pod/Classes/**/*.h",
+  "frameworks": "UIKit"
 }

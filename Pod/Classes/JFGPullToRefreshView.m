@@ -60,6 +60,25 @@
     return self;
 }
 
+- (void)setState:(JFGPullToRefreshViewState)state
+{
+    if (_state == state) {
+        return;
+    }
+
+    _state = state;
+    switch (_state) {
+        case JFGPullToRefreshViewStateNormal:
+            [self stopAnimating];
+            break;
+        case JFGPullToRefreshViewStateRefreshing:
+            [self startAnimating];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -69,11 +88,12 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    [newSuperview removeObserver:self forKeyPath:self.contentOffsetKeyPath context:(__bridge void *)self.kvoContext];
-    UIScrollView *scrollView;
-    if ((scrollView = (UIScrollView *)newSuperview)) {
-        [scrollView addObserver:self forKeyPath:self.contentOffsetKeyPath options:NSKeyValueObservingOptionInitial context:(__bridge void *)self.kvoContext];
+    UIScrollView *scrollView = (UIScrollView *) newSuperview;
+    if (self.superview && !newSuperview) {
+        [scrollView removeObserver:self forKeyPath:self.contentOffsetKeyPath];
     }
+    [scrollView addObserver:self forKeyPath:self.contentOffsetKeyPath options:NSKeyValueObservingOptionNew context:(__bridge void *)self.kvoContext];
+
 }
 
 - (void)dealloc
@@ -90,38 +110,44 @@
         UIScrollView *scrollView;
         if ((scrollView = (UIScrollView *) object)) {
             CGFloat offsetWithoutInset = self.previousOffset + self.scrollViewInsets.top;
-            
+
+            // Update the content inset for fixed section headers
             if (self.options.fixedSectionHeader && self.state == JFGPullToRefreshViewStateRefreshing) {
                 if (scrollView.contentOffset.y > 0) {
                     scrollView.contentInset = UIEdgeInsetsZero;
                 }
                 return;
             }
-            
+
+            // Alpha set
             if (self.options.alpha) {
                 double alpha = fabs(offsetWithoutInset) / (self.frame.size.height + 30);
                 if (alpha > 0.8) {
                     alpha = 0.8;
                 }
-                self.arrowView.alpha = alpha;
+                self.arrowView.alpha = (CGFloat) alpha;
             }
             
             CGRect oldRect = self.backgroundView.frame;
+            // Backgroundview frame set
             if (self.options.fixedTop) {
                 if (self.options.height < fabs(offsetWithoutInset)) {
-                    CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, fabs(offsetWithoutInset));
+                    CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, (CGFloat) fabs(offsetWithoutInset));
                     self.backgroundView.frame = newRect;
                 } else {
                     CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, self.options.height);
                     self.backgroundView.frame = newRect;
                 }
             } else {
-                CGRect newRect = CGRectMake(oldRect.origin.x, -fabs(offsetWithoutInset), oldRect.size.width, self.options.height + fabs(offsetWithoutInset));
+                CGRect newRect = CGRectMake(oldRect.origin.x, (CGFloat) -fabs(offsetWithoutInset), oldRect.size.width, (CGFloat) (self.options.height + fabs(offsetWithoutInset)));
                 self.backgroundView.frame = newRect;
             }
-            
+
+            // Pulling State Check
             if (offsetWithoutInset < -self.frame.size.height) {
-                if (!scrollView.isDragging && self.state != JFGPullToRefreshViewStateRefreshing) {
+
+                // pulling or refreshing
+                if (!scrollView.dragging && self.state != JFGPullToRefreshViewStateRefreshing) {
                     self.state = JFGPullToRefreshViewStateRefreshing;
                 } else if (self.state != JFGPullToRefreshViewStateRefreshing) {
                     [self arrowRotation];
@@ -153,17 +179,19 @@
         CGPoint oldContentOffset = scrollView.contentOffset;
         scrollView.contentOffset = CGPointMake(oldContentOffset.x, self.previousOffset);
         scrollView.bounces = NO;
+        __weak typeof(self) weakSelf = self;
         [UIView animateWithDuration:self.options.animationDuration delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
             scrollView.contentInset = insets;
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, -insets.top);
         } completion:^(BOOL finished) {
-            if (self.options.autoStopTime != 0) {
-                dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, [NSNumber numberWithDouble:self.options.autoStopTime * NSEC_PER_SEC].longLongValue);
+            if (weakSelf.options.autoStopTime != 0) {
+                dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, @(weakSelf.options.autoStopTime * NSEC_PER_SEC).longLongValue);
                 dispatch_after(time, dispatch_get_main_queue(), ^{
-                    self.state = JFGPullToRefreshViewStateNormal;
+                    weakSelf.state = JFGPullToRefreshViewStateNormal;
                 });
             }
-            [self.delegate pullToRefreshViewDidFinishRefreshing];
+            [weakSelf.delegate pullToRefreshViewDidFinishRefreshing];
+            weakSelf.state = JFGPullToRefreshViewStateNormal;
         }];
     }
 }
@@ -171,30 +199,44 @@
 - (void)stopAnimating
 {
     [self.indicatorView stopAnimating];
-    self.arrowView.transform = CGAffineTransformIdentity;
-    self.arrowView.hidden = YES;
-    
-    UIScrollView *scrollView;
+
+    __weak typeof(self) weakSelf = self;
+    __weak UIScrollView *scrollView;
     if ((scrollView = (UIScrollView *)self.superview)) {
         scrollView.bounces = self.scrollViewBounces;
         [UIView animateWithDuration:self.options.animationDuration delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-            scrollView.contentInset = self.scrollViewInsets;
-        } completion:nil];
+            scrollView.contentInset = weakSelf.scrollViewInsets;
+            weakSelf.arrowView.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            weakSelf.arrowView.hidden = NO;
+        }];
     }
 }
 
 - (void)arrowRotation
 {
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-        self.arrowView.transform = CGAffineTransformIdentity;
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        weakSelf.arrowView.transform = CGAffineTransformMakeRotation(@(M_PI - 0.0000001).floatValue);
     } completion:nil];
 }
 
 - (void)arrowRotationBack
 {
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-        self.arrowView.transform = CGAffineTransformIdentity;
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        weakSelf.arrowView.transform = CGAffineTransformMakeRotation(@(M_PI - 0.0000001).floatValue);
     } completion:nil];
+}
+
+- (NSString *)kvoContext
+{
+    return @"";
+}
+
+- (NSString *)contentOffsetKeyPath
+{
+    return @"contentOffset";
 }
 
 @end
