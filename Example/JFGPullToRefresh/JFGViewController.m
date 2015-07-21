@@ -23,6 +23,7 @@
     [super viewDidLoad];
     NSMutableDictionary *options = [[NSMutableDictionary alloc] initWithDictionary:[JFGPullToRefreshOptions defaultOptions]];
     options[@"autoStopTime"] = @1.5;
+    options[@"imageName"] = @"arrow";
 	// Do any additional setup after loading the view, typically from a nib.
     [self.tableView addPullToRefreshWithOptions:[[JFGPullToRefreshOptions alloc] initWithOptions:options] withDelegate:self];
     

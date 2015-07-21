@@ -10,27 +10,24 @@
 Pod::Spec.new do |s|
   s.name             = "JFGPullToRefresh"
   s.version          = "0.1.0"
-  s.summary          = "A short description of JFGPullToRefresh."
+  s.summary          = "A arrow pull to refresh library"
   s.description      = <<-DESC
-                       An optional longer description of JFGPullToRefresh
+                       A simple pull to refresh library with arrow animation.
 
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       Inspired by the Twitter app for iPad
                        DESC
   s.homepage         = "https://github.com/fatalaa/JFGPullToRefresh"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.screenshots      = "https://raw.githubusercontent.com/fatalaa/JFGPullToRefresh/master/Example/Gif/demo.gif"
   s.license          = 'MIT'
   s.author           = { "Tibor Molnár" => "fatalaa@hotmail.com" }
   s.source           = { :git => "https://github.com/fatalaa/JFGPullToRefresh.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/fatalaa'
+  s.social_media_url = 'https://twitter.com/fatalaa'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '7.1'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'JFGPullToRefresh' => ['Pod/Assets/*.png']
-  }
+  s.resources    =  ['Pod/Assets/Media.xcassets']
 
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
